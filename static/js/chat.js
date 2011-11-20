@@ -14,11 +14,15 @@
  * limitations under the License.
  */
 
+ var started=false;
+
 var chat = (function()
 {
   var self = {
+  
     show: function () 
-    {
+    { if (started) return;
+      started = true;
       $("#chaticon").hide("slide", {
         direction: "down"
       }, 500, function ()
@@ -26,6 +30,7 @@ var chat = (function()
         $("#chatbox").show("slide", {
           direction: "down"
         }, 750, self.scrollDown);
+	
         $("#chatbox").resizable(
         {
           handles: 'nw',
@@ -42,30 +47,40 @@ var chat = (function()
             self.scrollDown();
           }
         });
+	
       });
     },
+
     hide: function () 
     {
+      started = false;
+
       $("#chatcounter").text("0");
       $("#chatbox").hide("slide", { direction: "down" }, 750, function()
       {
         $("#chaticon").show("slide", { direction: "down" }, 500);
       });
     },
+
     scrollDown: function()
     {
+
+      started = false;
+
       //console.log($('#chatbox').css("display"));
       if($('#chatbox').css("display") != "none") {
         $('#chattext').animate({scrollTop: $('#chattext')[0].scrollHeight}, "slow");
-        $("#chatinput").focus();
+	$("#chatinput").focus();
       }
-    }, 
+    },
+    
     send: function()
     {
       var text = $("#chatinput").val();
       pad.collabClient.sendMessage({"type": "CHAT_MESSAGE", "text": text});
       $("#chatinput").val("");
     },
+    
     addMessage: function(msg, increment)
     {    
       //correct the time
@@ -107,10 +122,14 @@ var chat = (function()
       self.scrollDown();
 
     },
+    
     init: function()
     {
       $("#chaticon").mouseenter(function(){
         self.show();
+      });
+      $("#titlecross").mouseenter(function(){
+        self.hide();
       });
       $("#chatbox").mouseenter(function(evt){
         if ( !$("#chatinput").is(":focus") ) $("#chatinput").focus();
