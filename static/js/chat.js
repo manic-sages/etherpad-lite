@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
- var started=false;
+ var chatOpenAnimationIsStarted = false;
 
 var chat = (function()
 {
   var self = {
   
     show: function () 
-    { if (started) return;
-      started = true;
+    { if (chatOpenAnimationIsStarted) return;
+      chatOpenAnimationIsStarted = true;
       $("#chaticon").hide("slide", {
         direction: "down"
       }, 500, function ()
@@ -53,7 +53,7 @@ var chat = (function()
 
     hide: function () 
     {
-      started = false;
+      chatOpenAnimationIsStarted = false;
 
       $("#chatcounter").text("0");
       $("#chatbox").hide("slide", { direction: "down" }, 750, function()
@@ -65,12 +65,11 @@ var chat = (function()
     scrollDown: function()
     {
 
-      started = false;
-
       //console.log($('#chatbox').css("display"));
       if($('#chatbox').css("display") != "none") {
         $('#chattext').animate({scrollTop: $('#chattext')[0].scrollHeight}, "slow");
 	$("#chatinput").focus();
+       chatOpenAnimationIsStarted = false;
       }
     },
     
@@ -129,12 +128,8 @@ var chat = (function()
         self.show();
       });
       $("#titlecross").mouseenter(function(){
-        self.hide();
+        if (!chatOpenAnimationIsStarted) self.hide();
       });
-      $("#chatbox").mouseenter(function(evt){
-        if ( !$("#chatinput").is(":focus") ) $("#chatinput").focus();
-      });
-      
       $("#chatinput").keypress(function(evt)
       {
         //if the user typed enter, fire the send
