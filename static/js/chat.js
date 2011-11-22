@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
- var chatOpenAnimationIsStarted = false;
+ var chatAnimationIsStarted = false;
 
 var chat = (function()
 {
   var self = {
   
     show: function () 
-    { if (chatOpenAnimationIsStarted) return;
-      chatOpenAnimationIsStarted = true;
+    { if (chatAnimationIsStarted) return;
+      chatAnimationIsStarted = true;
       $("#chaticon").hide("slide", {
         direction: "down"
       }, 500, function ()
@@ -30,7 +30,6 @@ var chat = (function()
         $("#chatbox").show("slide", {
           direction: "down"
         }, 750, self.scrollDown);
-	
         $("#chatbox").resizable(
         {
           handles: 'nw',
@@ -47,18 +46,21 @@ var chat = (function()
             self.scrollDown();
           }
         });
-	
       });
     },
 
     hide: function () 
     {
-      chatOpenAnimationIsStarted = false;
+      if (chatAnimationIsStarted) return;
+      chatAnimationIsStarted = true;
 
       $("#chatcounter").text("0");
       $("#chatbox").hide("slide", { direction: "down" }, 750, function()
       {
-        $("#chaticon").show("slide", { direction: "down" }, 500);
+        $("#chaticon").show("slide", { direction: "down" }, 500, function()
+	{
+	      chatAnimationIsStarted = false;
+	});
       });
     },
 
@@ -68,9 +70,8 @@ var chat = (function()
       //console.log($('#chatbox').css("display"));
       if($('#chatbox').css("display") != "none") {
         $('#chattext').animate({scrollTop: $('#chattext')[0].scrollHeight}, "slow");
-	$("#chatinput").focus();
-       chatOpenAnimationIsStarted = false;
       }
+      chatAnimationIsStarted = false;
     },
     
     send: function()
@@ -125,13 +126,13 @@ var chat = (function()
     init: function()
     {
       $("#chaticon").mouseenter(function(){
-        self.show();
+        if (!chatAnimationIsStarted) self.show();
       });
       $("#titlecross").mouseenter(function(){
-        if (!chatOpenAnimationIsStarted) self.hide();
+        if (!chatAnimationIsStarted) self.hide();
       });
       $("#chatbox").mouseenter(function(){
-        if (!chatOpenAnimationIsStarted) $("#chatinput").focus();
+        if (!chatAnimationIsStarted) $("#chatinput").focus();
       });
       $("#chatinput").keypress(function(evt)
       {
