@@ -64,6 +64,7 @@ var chat = (function()
     scrollDown: function()
     {
       //console.log($('#chatbox').css("display"));
+
       if($('#chatbox').css("display") != "none") {
         $('#chattext').animate({scrollTop: $('#chattext')[0].scrollHeight}, "slow");
       }
