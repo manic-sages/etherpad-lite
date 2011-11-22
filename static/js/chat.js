@@ -130,6 +130,9 @@ var chat = (function()
       $("#titlecross").mouseenter(function(){
         if (!chatOpenAnimationIsStarted) self.hide();
       });
+      $("#chatbox").mouseenter(function(){
+        if (!chatOpenAnimationIsStarted) $("#chatinput").focus();
+      });
       $("#chatinput").keypress(function(evt)
       {
         //if the user typed enter, fire the send
