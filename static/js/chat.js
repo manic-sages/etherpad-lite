@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
- var chatAnimationIsStarted = false;
+var chatAnimationIsStarted = false;
 
 var chat = (function()
 {
   var self = {
-  
     show: function () 
     { if (chatAnimationIsStarted) return;
       chatAnimationIsStarted = true;
@@ -48,7 +47,6 @@ var chat = (function()
         });
       });
     },
-
     hide: function () 
     {
       if (chatAnimationIsStarted) return;
@@ -58,29 +56,25 @@ var chat = (function()
       $("#chatbox").hide("slide", { direction: "down" }, 750, function()
       {
         $("#chaticon").show("slide", { direction: "down" }, 500, function()
-	{
-	      chatAnimationIsStarted = false;
-	});
+        {
+          chatAnimationIsStarted = false;
+        });
       });
     },
-
     scrollDown: function()
     {
-
       //console.log($('#chatbox').css("display"));
       if($('#chatbox').css("display") != "none") {
         $('#chattext').animate({scrollTop: $('#chattext')[0].scrollHeight}, "slow");
       }
       chatAnimationIsStarted = false;
     },
-    
     send: function()
     {
       var text = $("#chatinput").val();
       pad.collabClient.sendMessage({"type": "CHAT_MESSAGE", "text": text});
       $("#chatinput").val("");
     },
-    
     addMessage: function(msg, increment)
     {    
       //correct the time
@@ -122,7 +116,6 @@ var chat = (function()
       self.scrollDown();
 
     },
-    
     init: function()
     {
       $("#chaticon").mouseenter(function(){
