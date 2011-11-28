@@ -9,3 +9,5 @@ var/dirty.db
 bin/convertSettings.json
 _*
 *.diff
+*~
+*.patch
