@@ -1146,15 +1146,19 @@ width:33px !important;
   color: #999;
 }
 
+label[for=readonlyinput] {
+  margin: 0 10px 0 2px;
+}
+
 @media screen and (max-width: 600px) {
   #editbar ul li {
     padding: 4px 1px;
   }
 }
 
-#embedreadonlyqr{
-  padding-top:20px;
-  margin-left:100px;
+#qr_center {
+  margin: 10px 10px auto 0;
+  text-align: center;
 }
 
 #qrcode{
