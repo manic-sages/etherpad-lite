@@ -18,6 +18,10 @@ var chatAnimationIsStarted = false;
 
 var chat = (function()
 {
+  var ua = navigator.userAgent.toLowerCase();
+  var isAndroid = ua.indexOf("android") > -1;
+  var isMobileSafari = ua.indexOf("mobile") > -1;
+  var bottomMargin = "0px";
   var chatMentions = 0;
   var title = document.title;
   var self = {
@@ -44,7 +48,10 @@ var chat = (function()
           {
             $("#focusprotector").hide();
             
-            $("#chatbox").css({right: "20px", bottom: "0px", left: "", top: ""});
+            if(isAndroid || isMobileSafari)
+              bottommargin = "32px";
+            
+            $("#chatbox").css({right: "20px", bottom: bottomMargin, left: "", top: ""});
             
             self.scrollDown();
           }
@@ -58,13 +65,19 @@ var chat = (function()
       if (chatAnimationIsStarted) return;
       chatAnimationIsStarted = true;
       $("#chatcounter").text("0");
-      $("#chatbox").hide("slide", { direction: "down" }, 750, function()
+      if(isAndroid || isMobileSafari) {
+        $("#chatbox").toggle();
+      }
+      else
       {
-        $("#chaticon").show("slide", { direction: "down" }, 500, function()
-        {
-          chatAnimationIsStarted = false;
-        });
-      });
+        $("#chatbox").hide("slide", { direction: "down" }, 750, function()
+	  {
+	    $("#chaticon").show("slide", { direction: "down" }, 500, function()
+	      {
+		chatAnimationIsStarted = false;
+	      });
+	  });
+      }
     },
     scrollDown: function()
     {
