@@ -32,8 +32,8 @@ var rtlIsTrue = false;
 
 $(document).ready(function()
 {
-  //start the costum js
-  if(typeof costumStart == "function") costumStart();
+  //start the custom js
+  if(typeof customStart == "function") customStart();
   getParams();
   handshake();
 });
