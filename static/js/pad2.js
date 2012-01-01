@@ -25,7 +25,7 @@
 var socket;
 var LineNumbersDisabled = false;
 var noColors = false;
-var useMonospaceFontGlobal = false;
+var useMonospaceFontGlobal = true;
 var globalUserName = false;
 var hideQRCode = false;
 var rtlIsTrue = false;

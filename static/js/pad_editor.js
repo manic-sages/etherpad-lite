@@ -89,7 +89,7 @@ var padeditor = (function()
       self.ace.setProperty("showsauthorcolors", v);
       padutils.setCheckbox($("#options-colorscheck"), v);
 
-      v = getOption('useMonospaceFont', false);
+      v = getOption('useMonospaceFont', true);
       self.ace.setProperty("textface", (v ? "monospace" : "Arial, sans-serif"));
       $("#viewfontmenu").val(v ? "monospace" : "normal");
 

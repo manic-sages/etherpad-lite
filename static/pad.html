@@ -82,12 +82,6 @@
     <div class="buttonicon" style="background-position:0px -86px"></div>
   </a>
 </li>
-<li class="separator"></li>
-<li onClick="window.pad&&pad.editbarClick('tglfont');return false;" >
-  <a id="monospace" title="toggle the font between monospace and normal">
-     <div class="buttonicon" style="background-position:0px -436px"></div>
-  </a>
-</li>
 </ul>
 
 <ul id="menu_right">
@@ -97,12 +91,6 @@
     <div class="buttonicon" style="background-position:0px -68px"></div>
   </a>
 </li>
-<li onClick="window.pad&&pad.editbarClick('embed');return false;" >
-  <a id="embedlink" title="Share and Embed this pad">
-    <div class="buttonicon" style="background-position:0px -18px"></div>
-  </a>
-</li>
-<li class="separator"></li>
 <li id="timesliderlink" onClick="document.location = document.location.pathname+ '/timeslider'">
   <a title="Show the history of this pad">
     <div class="buttonicon" style="background-position:0px -218px"></div>
@@ -187,59 +175,9 @@
 <!-- import export code -->
 <div id="importexport">
 
-<div id="import">
-  Import from text file, HTML, PDF, Word, ODT or RTF:<br/><br/>
-  <form id="importform" method="post" action="" target="importiframe" enctype="multipart/form-data">
-    <div class="importformdiv" id="importformfilediv"> 
-      <input type="file" name="file" size="15" id="importfileinput" /> 
-      <div class="importmessage" id="importmessagefail"></div> 
-    </div> 
-  <div class="importmessage" id="importmessagesuccess">Successful!</div> 
-  <div class="importformdiv" id="importformsubmitdiv"> 
-    <input type="hidden" name="padId" value="blpmaXT35R" /> 
-    <span class="nowrap"> 
-      <input type="submit" name="submit" value="Import Now" disabled="disabled" id="importsubmitinput" /> 
-      <img alt="" id="importstatusball" src="../static/img/loading.gif" align="top" /> 
-      <img alt="" id="importarrow" src="../static/img/leftarrow.png" align="top" /> 
-    </span> 
-  </div> 
-</form>
-</div>
-
-<div id="importexportline"></div>
-
-<div id="export">
   Export current pad as:
   <a id="exporthtmla" target="_blank" class="exportlink"><div class="exporttype" id="exporthtml">HTML</div></a>
   <a id="exportplaina" target="_blank" class="exportlink"><div class="exporttype" id="exportplain">Plain text</div></a>
-  <a id="exportworda" target="_blank" class="exportlink"><div class="exporttype" id="exportword">Microsoft Word</div></a>
-  <a id="exportpdfa" target="_blank" class="exportlink"><div class="exporttype" id="exportpdf">PDF</div></a>
-  <a id="exportopena" target="_blank" class="exportlink"><div class="exporttype" id="exportopen">OpenDocument</div></a>
-  <a id="exportdokuwikia" target="_blank" class="exportlink"><div class="exporttype" id="exportdokuwiki">DokuWiki text</div></a>
-  <a id="exportwordlea" target="_blank" onClick="padimpexp.export2Wordle();return false;" class="exportlink"><div class="exporttype" id="exportwordle">Wordle</div></a>
-  <form id="wordlepost" name="wall" action="http://wordle.net/advanced" method="POST" style="margin-left:0px;"> 
-    <div id="hidetext" style=""><textarea id="text" name="text" id="text" style="display:none;">Coming soon!</textarea></div> 
-  </form> 
-</div>
-</div>
-
-<!-- the embed code -->
-<div id="embed">
-  <div id="embedreadonly">
-    <input type="checkbox" id="readonlyinput" onClick="padeditbar.setEmbedLinks();"/><label for="readonlyinput">Read only</label>
-  </div>
-  Share:
-  <br/>
-  <div id="linkcode">
-    <label for="linkinput">Link:</label><input id="linkinput" type="text" value="">
-  </div><br/>
-  <div id="embedcode">
-    <label for="embedinput">Embed code:</label><input id="embedinput" type="text" value="">
-  </div><br/>
-  <div id="qrcode">
-    <label for="embedreadonlyqr">QR code:</label><br/>
-    <div id="qr_center"><img id="embedreadonlyqr"></div>
-  </div>
 </div>
 
 <div id="chatthrob">

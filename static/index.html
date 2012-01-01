@@ -162,8 +162,10 @@
 		}
             }
             
-            //start the costum js
-            if(typeof costumStart == "function") costumStart();
+            //start the custom JS
+            $(function() {
+              if(typeof customStart == "function") customStart();
+            });
         </script>
 	</body>
 </html>

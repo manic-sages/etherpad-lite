@@ -457,6 +457,11 @@ function getCollabClient(ace2editor, serverVars, initialUserInfo, options)
 
   function tellAceAuthorInfo(userId, colorId, inactive)
   {
+    var username = "unknown";
+    var userinfo = serverVars.historicalAuthorData[userId];
+    if (userinfo) {
+      username = userinfo.name;
+    }
     if(typeof colorId == "number")
     {
       colorId = clientVars.colorPalette[colorId];
@@ -467,13 +472,15 @@ function getCollabClient(ace2editor, serverVars, initialUserInfo, options)
     {
       editor.setAuthorInfo(userId, {
         bgcolor: cssColor,
-        fade: 0.5
+        fade: 0.5,
+        title: username
       });
     }
     else
     {
       editor.setAuthorInfo(userId, {
-        bgcolor: cssColor
+        bgcolor: cssColor,
+        title: username
       });
     }
   }
