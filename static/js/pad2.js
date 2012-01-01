@@ -33,9 +33,9 @@ var rtlIsTrue = false;
 $(document).ready(function()
 {
   //start the custom js
-  if(typeof customStart == "function") customStart();
   getParams();
   handshake();
+  if(typeof customStart == "function") customStart();
 });
 
 $(window).unload(function()
@@ -487,6 +487,9 @@ var pad = {
       setTimeout(function()
       {
         padeditor.ace.focus();
+        if (typeof customAfterStart === 'function') {
+          customAfterStart(clientVars);
+        }
       }, 0);
     }
   },
