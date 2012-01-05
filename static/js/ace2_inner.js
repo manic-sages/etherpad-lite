@@ -180,6 +180,12 @@ function OUTER(gscope)
 
   var authorInfos = {}; // presence of key determines if author is present in doc
 
+  function getAuthorInfo(author)
+  {
+    if (!author) return authorInfos;
+    return authorInfos[author];
+  }
+
   function setAuthorInfo(author, info)
   {
     if ((typeof author) != "string")
@@ -1168,6 +1174,10 @@ function OUTER(gscope)
   {
     setAuthorInfo(author, info);
   };
+  editorInfo.ace_getAuthorInfo = function(author)
+  {
+    return getAuthorInfo(author);
+  }
   editorInfo.ace_setAuthorSelectionRange = function(author, start, end)
   {
     changesetTracker.setAuthorSelectionRange(author, start, end);

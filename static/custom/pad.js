@@ -5,23 +5,22 @@ function customStart()
   //you can load extra scripts with $.getScript http://api.jquery.com/jQuery.getScript/
 }
 
-function customAfterStart(clientvars)
+function customAfterStart(pad, padeditor)
 {
-  console.log('got vars');
-  console.log(clientvars.collab_client_vars);
-  var vars = clientvars.collab_client_vars;
+  pad.editor = padeditor;
+  var frame = padeditor.ace.getFrame();
+  
   function className2AuthorName(className)
   {
     var authorId = className2Author(className);
-    var authorObj = clientvars.collab_client_vars.historicalAuthorData[authorId];
+    var authorObj = padeditor.ace.getAuthorInfo(authorId);
     if (authorObj) {
-      return authorObj.name;
+      return authorObj.title;
     } else {
       return "unknown author: " + authorId;
     }
   }
-  var doc = $('iframe').contents().find('iframe').contents().find('#innerdocbody');
-  console.log(doc);
+  var doc = $(frame).contents().find('iframe').contents().find('#innerdocbody');
   doc.on('mouseenter', 'span', function (event) {
     if (this.classList[0]) {
       var mainClass = this.classList[0];

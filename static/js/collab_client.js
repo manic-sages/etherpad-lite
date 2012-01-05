@@ -452,16 +452,11 @@ function getCollabClient(ace2editor, serverVars, initialUserInfo, options)
 
   function tellAceActiveAuthorInfo(userInfo)
   {
-    tellAceAuthorInfo(userInfo.userId, userInfo.colorId);
+    tellAceAuthorInfo(userInfo.userId, userInfo.colorId, userInfo.name);
   }
 
-  function tellAceAuthorInfo(userId, colorId, inactive)
+  function tellAceAuthorInfo(userId, colorId, username, inactive)
   {
-    var username = "unknown";
-    var userinfo = serverVars.historicalAuthorData[userId];
-    if (userinfo) {
-      username = userinfo.name;
-    }
     if(typeof colorId == "number")
     {
       colorId = clientVars.colorPalette[colorId];
@@ -472,22 +467,25 @@ function getCollabClient(ace2editor, serverVars, initialUserInfo, options)
     {
       editor.setAuthorInfo(userId, {
         bgcolor: cssColor,
-        fade: 0.5,
-        title: username
+        fade: 0.6,
+        title: username,
+        name: username
       });
     }
     else
     {
       editor.setAuthorInfo(userId, {
         bgcolor: cssColor,
-        title: username
+        fade: 0.4,
+        title: username,
+        name: username
       });
     }
   }
 
   function fadeAceAuthorInfo(userInfo)
   {
-    tellAceAuthorInfo(userInfo.userId, userInfo.colorId, true);
+    tellAceAuthorInfo(userInfo.userId, userInfo.colorId, userInfo.name, true);
   }
 
   function getConnectedUsers()
@@ -502,7 +500,7 @@ function getCollabClient(ace2editor, serverVars, initialUserInfo, options)
       var data = hadata[author];
       if (!userSet[author])
       {
-        tellAceAuthorInfo(author, data.colorId, true);
+        tellAceAuthorInfo(author, data.colorId, data.name, true);
       }
     }
   }

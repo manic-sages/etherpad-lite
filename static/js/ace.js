@@ -170,6 +170,10 @@ function Ace2Editor()
   {
     info.ace_setAuthorInfo(author, authorInfo);
   });
+  editor.getAuthorInfo = function(author)
+  {
+    return info.ace_getAuthorInfo(author);
+  };
   editor.setAuthorSelectionRange = pendingInit(function(author, start, end)
   {
     info.ace_setAuthorSelectionRange(author, start, end);

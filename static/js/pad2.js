@@ -488,7 +488,7 @@ var pad = {
       {
         padeditor.ace.focus();
         if (typeof customAfterStart === 'function') {
-          customAfterStart(clientVars);
+          customAfterStart(pad, padeditor);
         }
       }, 0);
     }
