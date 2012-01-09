@@ -113,13 +113,7 @@ function getParams()
       $('#editorcontainer').css({"top":"0px"});
     }
   }
-  if(showChat)
-  {
-    if(showChat == "false")
-    {
-      $('#chaticon').hide();
-    }
-  }
+  $('#chaticon').hide();
   if(showLineNumbers)
   {
     if(showLineNumbers == "false")
